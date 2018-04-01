@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <br>
+
+    <form method="post" enctype="multipart/form-data" style="text-align: center; max-width: 330px; margin: 0 auto;">
+        {% csrf_token %}
+
+        <p><label for="id_name" class="sr-only">Picture name:</label></p>
+        <input type="text" name="name" maxlength="128" required id="id_name" class="form-control" placeholder="Picture name" />
+
+        <br>
+
+        <p><label for="id_path" class="sr-only">Path:</label>
+            <input type="file" name="path" required id="id_path"  /></p>
+
+        <!--    <button type="submit">Upload</button> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit"> Upload </button>
+    </form>
+
+
+
+{% endblock %}

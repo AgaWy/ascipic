@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <h3 align="center">ASCII picture named {{ name }}</h3>
+
+    <p> <pre class="pre-ascii center-block text-center">{{ ascii }}</pre> </p>
+
+
+
+    <!--
+    <p> <pre style="font-size: 5px;">{{ ascii }}</pre> </p>
+    <!-- PRE WORKS AS BR AT THE END OF PHOTO -->
+
+
+{% endblock content %}
+

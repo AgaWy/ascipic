@@ -1,0 +1,10 @@
+decorator==4.1.2
+Django==1.11.6
+django-extensions==1.9.6
+djangorestframework==3.7.1
+Faker==0.8.7
+ipdb==0.10.3
+ipython
+ipython-genutils==0.2.0
+img2txt.py
+

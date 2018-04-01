@@ -1,0 +1,19 @@
+.navbar-default .navbar-nav>li>a {
+    color: #FFFFFF;
+}
+
+.pre-ascii {
+    font-size: 5px;
+    background-color: white;
+    max-width: 520px;
+}
+.pre-gallery {
+    width: 300px;
+    height: 200px;
+    font-size: 2px;
+    background-color: white;
+    text-align: center;
+}
+p {
+    text-align: center;
+}

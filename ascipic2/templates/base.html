@@ -1,0 +1,108 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block title %}
+        <title>{{ page_title }}</title>
+    {% endblock title %}
+
+    {% block bootstrap %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!– above is for Bootstrap, –>
+    {% endblock bootstrap %}
+
+    <link rel="stylesheet" href=" {% static "ascii_style.css" %} "/>
+
+    {% block jquery %}
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {% endblock jquery %}
+
+
+
+
+    {% block style %}
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <style>
+            h1,h2,h3,h4,a,p {
+                color: #5F4B8B;
+                font-family: 'Lobster';
+            }
+            li {
+                color: white;
+                text-shadow: none;
+            }
+        </style>
+    {% endblock style %}
+
+
+    {% block script %}
+    {% endblock script %}
+
+
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid" style="text-align: center; background-color: #5F4B8B; font-family: Lobster">
+         <div class="navbar-header">
+            <a href="{% url "base" %}" class="navbar-brand" style="color: white">
+                <img src="{% static "images/Apng.png" %}" alt="Apng" width="40" height="40" style="margin-top: -10px;" />
+            </a>
+
+         </div>
+        <ul class="nav navbar-nav">
+
+        {% if user.is_authenticated %}
+            <li><a href=" {% url "logout" %} "> Logout user {{ user }} </a></li>
+            <li><a href=" {% url "gallery" %} "> Gallery </a></li>
+            <li><a href=" {% url "upload" %} "> Upload photo </a></li>
+        {% else %}
+            <li><a href="{% url "signup" %}">Sign up</a></li>
+            <li><a href="{% url "login" %}">Log in</a></li>
+        {% endif %}
+
+    </ul>
+    </div>
+</nav>
+
+
+{#    {% if user.is_authenticated %}#}
+{#        <p align="center">Zalogowany uzytkownik: <b>{{ user }}</b></p>#}
+{#    {% else %}#}
+{#        <p align="center">Uzytkownik nie jest zalogowany. </p>#}
+{#    {% endif %}#}
+{#    <hr>#}
+
+
+{% block content %}
+
+
+    <div class="text-center">
+    <br>
+        <h2><b>Welcome to  A S C I P I C ! </b></h2>
+    <br>
+    <h3>Here you can easily change picture into fancy ASCII code.</h3>
+    <h3>Have fun and enjoy! </h3>
+    <br>
+    <a class="btn btn-primary btn-lg" href="upload" role="button"> Lets start! </a>
+</div>
+
+
+{% endblock content %}
+
+</body>
+</html>
+
+
+
+
