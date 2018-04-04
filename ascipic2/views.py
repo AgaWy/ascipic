@@ -16,7 +16,7 @@ from img2txt import load_and_resize_image, dither_image_to_web_palette, generate
 from django.views.generic.edit import DeleteView
 
 import PIL
-
+# IMAGE PROCESSING LILBRARY
 
 
 

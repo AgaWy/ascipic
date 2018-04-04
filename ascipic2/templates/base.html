@@ -60,7 +60,7 @@
             </a>
 
          </div>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" style="width:92%">
 
         {% if user.is_authenticated %}
             <li><a href=" {% url "logout" %} "> Logout user {{ user }} </a></li>
@@ -70,6 +70,10 @@
             <li><a href="{% url "signup" %}">Sign up</a></li>
             <li><a href="{% url "login" %}">Log in</a></li>
         {% endif %}
+
+        <li>  </li>
+        <li class="pull-right"> <a href="https://www.pantone.com/color-of-the-year-2018-tools-for-designers" style="color: #7865A3; text-shadow: none"> 2018 </a> </li>
+
 
     </ul>
     </div>

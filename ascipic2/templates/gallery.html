@@ -21,7 +21,7 @@
                 <!-- <img src="{{ MEDIA_URL }}{{image.path}}" style="max-width: 300px">  -->
 
             <br/>
-                <p>Image name: {{ image.name }} (pk:{{ image.pk }})
+                <p>{{ image.name }} <span style="font-size: x-small">({{ image.pk }})</span>
 
                 <a href="{% url 'delete' image.pk %}">
                     <button class="btn btn-xs btn-primary" type="submit" style="max-width: 80px;"> Delete </button>
