@@ -5,15 +5,21 @@
 
 {% block content %}
 
-    <h3 align="center">ASCII picture named {{ name }}</h3>
+    {% if user.is_authenticated %}
+
+        <h3 align="center">ASCII picture named {{ name }}</h3>
+
+    {% else %}
+
+        <h3 align="center">ASCII picture</h3>
+
+    {% endif %}
 
     <p> <pre class="pre-ascii center-block text-center">{{ ascii }}</pre> </p>
-
-
-
-    <!--
-    <p> <pre style="font-size: 5px;">{{ ascii }}</pre> </p>
     <!-- PRE WORKS AS BR AT THE END OF PHOTO -->
+
+
+
 
 
 {% endblock content %}

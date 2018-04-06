@@ -20,7 +20,7 @@ from django.contrib import admin
 # from ascipic2.views import StringView
 from ascipic2.views import ZzzView
 from ascipic2.views import LoginView, SignupView, LogoutView, UploadView, GalleryView
-from ascipic2.views import DeleteImg
+from ascipic2.views import DeleteImg, DisplayImg
 
 
 
@@ -39,6 +39,7 @@ urlpatterns = ([
     url(r'^gallery/', GalleryView.as_view(), name='gallery'),
     url(r'^$', ZzzView.as_view(), name='base'),
     url(r'^delete/(?P<pk>(\d)+)', DeleteImg.as_view(), name='delete'),
+    url(r'^display/(?P<pk>(\d)+)', DisplayImg.as_view(), name='display'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

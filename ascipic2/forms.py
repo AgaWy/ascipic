@@ -14,7 +14,7 @@ class SignupForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())
-    email = forms.CharField()
+    email = forms.CharField(required=False)
 
 
 class ImageForm(forms.ModelForm):

@@ -18,6 +18,11 @@ from django.views.generic.edit import DeleteView
 import PIL
 # IMAGE PROCESSING LILBRARY
 
+from django.http import Http404
+from django.core.exceptions import PermissionDenied
+
+
+
 
 
 
@@ -153,9 +158,12 @@ class SignupView(View):
 
     def post(self, request):
         form = SignupForm(request.POST)
-        username = form.cleaned_data['username']
-        password1 = form.cleaned_data['password1']
-        password2 = form.cleaned_data['password2']
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+        else:
+            return render(request, "signup.html", {'form': form, 'error_msg': "wprowadz wszystkie dane"})
 
         user_exists = False
         try:
@@ -167,15 +175,14 @@ class SignupView(View):
 
         if user_exists:
             # username = User.objects.get(username="username")
-            error = 'uzytkownik juz istnieje'
-            return error
+            return render(request, "signup.html", {'form': form, 'error_msg': "uzytkownik juz istnieje"})
 
         else:
             if password1 == password2:
                 user = User.objects.create_user(username=username, password=password1)
             else:
-                error = 'haslo nie jest jednakowe'
-                return error
+                return render(request, "signup.html", {'form': form, 'error_msg': "haslo nie jest jednakowe"})
+
 
         return redirect('/login')
 
@@ -202,6 +209,7 @@ class UploadView(View):
 
     def post(self, request):
         form = ImageForm(request.POST, request.FILES)
+
         if form.is_valid():
             img = form.save(commit=False)
             # TAKES IMAGE FROM FORM AND PRETENDS TO SAVE IT IN DATABASE
@@ -241,6 +249,7 @@ class UploadView(View):
 
 # GALLERY PAGE
 class GalleryView(View):
+
     def get(self, request):
         images = Image.objects.filter(creator=request.user)
         ctx = {
@@ -261,16 +270,55 @@ class GalleryView(View):
 # from django.views.generic.edit import DeleteView
 class DeleteImg(DeleteView):
     model = Image
-    success_url = '../gallery'
-    # ASK MENTOR
+    success_url = '/gallery'
+
+
+    # DO NOT DELETE ASCII FROM OTHER USER'S GALLERY
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        obj = Image.objects.get(pk=pk)
+        if obj.creator == self.request.user:
+            return obj
+        else:
+            raise
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+# from ascipic2.views import DeleteImg
 # url(r'^delete/(?P<pk>(\d)+)', DeleteImg.as_view(), name='delete'),
 
 
 
 
+
+
+
+
+# DISPLAY OPTION
+# from django.views.generic.edit import DeleteView
+class DisplayImg(View):
+    model = Image
+
+    def get(self, request, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        try:
+            obj = Image.objects.get(pk=pk)
+        except:
+            raise Http404("Image does not exist")
+
+        if obj.creator != self.request.user:
+            raise PermissionDenied("Image does not belong to you")
+
+        ctx = {
+            "name": obj.name,
+            "path": obj.path,
+            "ascii": obj.ascii,
+        }
+        return render(request, 'show.html', ctx)
+
+# from .views import DisplayImg
+# url(r'^display/(?P<pk>(\d)+)', DisplayImg.as_view(), name='display'),
 
 
 

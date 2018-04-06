@@ -7,8 +7,10 @@
     <h3 align="center">Gallery of {{ user }}</h3>
 
 
+    <br><br><br>
 
 
+    <div class="container-fluid">
     <div class="row">
     {#    for pic in pictures: make div thumbnail with miniature #}
     {%  for image in images %}
@@ -20,7 +22,6 @@
                 <!-- SHOWING ORIGINAL PICTURE -->
                 <!-- <img src="{{ MEDIA_URL }}{{image.path}}" style="max-width: 300px">  -->
 
-            <br/>
                 <p>{{ image.name }} <span style="font-size: x-small">({{ image.pk }})</span>
 
                 <a href="{% url 'delete' image.pk %}">
@@ -28,7 +29,10 @@
                 </a>
                 </p>
 
-                <pre class="pre-gallery">{{ image.ascii }}</pre>
+                <a style="text-decoration: none" href="{% url 'display' image.pk %}">
+                    <pre class="pre-gallery">{{ image.ascii }}</pre>
+                </a>
+
             </div>
 
 
@@ -38,6 +42,7 @@
             {% endif %}
 
     {%  endfor %}
+    </div>
     </div>
 
 
