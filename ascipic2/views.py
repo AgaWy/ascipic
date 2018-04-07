@@ -320,6 +320,6 @@ class DisplayImg(View):
 # from .views import DisplayImg
 # url(r'^display/(?P<pk>(\d)+)', DisplayImg.as_view(), name='display'),
 
-
+# hahaha
 
 
