@@ -18,6 +18,17 @@ Create an ASCII picture or login and save it in your gallery.
 - creating ascipic directly from camera
 
 
+## Views
+- homepage view
+  <img width="1279" alt="0" src="https://user-images.githubusercontent.com/26287150/39205777-f094acb4-47fb-11e8-8abe-eb561c6b2afb.png">
+
+- gallery view 
+  <img width="1278" alt="1" src="https://user-images.githubusercontent.com/26287150/39205898-4b27b2ac-47fc-11e8-8abb-b98528098809.png">
+
+
+
+
+
 ## Helpful links
 
 - python: https://www.python.org/downloads/
